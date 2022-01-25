@@ -53,7 +53,12 @@ const NavFavorites = () => {
       data={data}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => (
-        <View style={[tw`bg-gray-200`, { height: 0.5 }]} />
+        <View
+          style={[
+            tw`${theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'}`,
+            { height: 0.5 },
+          ]}
+        />
       )}
       renderItem={({ item }) => (
         <TouchableOpacity
@@ -72,7 +77,7 @@ const NavFavorites = () => {
           } ${!origin && 'opacity-20'}`}
         >
           <Icon
-            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            style={tw`mr-4 rounded-full bg-gray-500 p-3`}
             name={item.icon}
             type='ionicon'
             color={theme === 'dark' ? 'black' : 'white'}

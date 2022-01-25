@@ -88,6 +88,7 @@ const NavigateCard = () => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => navigation.navigate('FoodOptionsCard')}
           style={tw`flex flex-row justify-between ${
             theme === 'dark' ? 'bg-white' : 'bg-black'
           } w-24 px-4 py-3 rounded-full`}

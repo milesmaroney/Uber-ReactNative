@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { useColorScheme } from 'react-native';
+import FoodScreen from './screens/FoodScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -34,6 +35,13 @@ export default function App() {
               <Stack.Screen
                 name='MapScreen'
                 component={MapScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='FoodScreen'
+                component={FoodScreen}
                 options={{
                   headerShown: false,
                 }}

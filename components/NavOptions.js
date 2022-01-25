@@ -29,7 +29,7 @@ const data = [
     id: '2',
     title: 'Food',
     image: Food,
-    screen: 'EatsScreen',
+    screen: 'FoodScreen',
   },
   {
     id: '3',
@@ -53,7 +53,7 @@ const NavOptions = () => {
   const navElements = data.map((item, i) => (
     <TouchableOpacity
       onPress={() => navigation.navigate(item.screen)}
-      disabled={!origin || item.screen !== 'MapScreen'}
+      disabled={!origin}
       key={i}
     >
       <View style={tw`${!origin && 'opacity-20'}`}>

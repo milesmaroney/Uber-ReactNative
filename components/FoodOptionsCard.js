@@ -17,28 +17,30 @@ import { selectTravelTimeInformation } from '../slices/navSlice';
 const data = [
   {
     id: '1',
+    title: 'Walk',
+    multiplier: 0,
+    time: 7,
+    image: 'https://i.imgur.com/fcxSJvJ.png',
+  },
+  {
+    id: '2',
     title: 'UberX',
-    multiplier: 1,
+    multiplier: 1.2,
+    time: 1.5,
     image:
       'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png',
   },
   {
-    id: '2',
-    title: 'UberXL',
-    multiplier: 1.2,
-    image:
-      'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberXL.png',
-  },
-  {
     id: '3',
     title: 'UberLUX',
-    multiplier: 1.75,
+    multiplier: 2.5,
+    time: 1,
     image:
       'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/Lux.png',
   },
 ];
 
-const RideOptionsCard = () => {
+const FoodOptionsCard = () => {
   const navigation = useNavigation();
   const [active, setActive] = React.useState(null);
   const travelTimeInformation = useSelector(selectTravelTimeInformation);
@@ -68,7 +70,7 @@ const RideOptionsCard = () => {
             theme === 'dark' && 'text-white'
           }`}
         >
-          Select a Ride
+          Start Navigation
           {travelTimeInformation &&
             ` - ${travelTimeInformation?.distance?.text}`}
         </Text>
@@ -97,7 +99,9 @@ const RideOptionsCard = () => {
                 {item.title}
               </Text>
               <Text style={tw`${theme === 'dark' && 'text-white'}`}>
-                {travelTimeInformation?.duration?.text}
+                {travelTimeInformation?.duration?.text.split(' ')[0] *
+                  item.time}{' '}
+                minutes
               </Text>
             </View>
             <Text style={tw`text-xl ${theme === 'dark' && 'text-white'}`}>
@@ -128,4 +132,4 @@ const RideOptionsCard = () => {
   );
 };
 
-export default RideOptionsCard;
+export default FoodOptionsCard;

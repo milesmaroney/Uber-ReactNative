@@ -8,6 +8,7 @@ import RideOptionsCard from '../components/RideOptionsCard';
 import { TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import FoodOptionsCard from '../components/FoodOptionsCard';
 
 const MapScreen = () => {
   const Stack = createNativeStackNavigator();
@@ -37,6 +38,11 @@ const MapScreen = () => {
           <Stack.Screen
             name='RideOptionsCard'
             component={RideOptionsCard}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name='FoodOptionsCard'
+            component={FoodOptionsCard}
             options={{ headerShown: false }}
           />
         </Stack.Navigator>
