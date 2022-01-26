@@ -10,6 +10,8 @@ import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import UberLogo from '../assets/uberlogo.png';
 import UberLogoWhite from '../assets/uberlogowhite.png';
+import mapperLogo from '../assets/mapperlogo.png';
+import mapperLogoWhite from '../assets/mapperlogowhite.png';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
@@ -29,7 +31,7 @@ const HomeScreen = () => {
       <View style={tw`p-5`}>
         <Image
           style={{ width: 100, height: 100, resizeMode: 'contain' }}
-          source={theme === 'dark' ? UberLogoWhite : UberLogo}
+          source={theme === 'dark' ? mapperLogoWhite : mapperLogo}
         />
 
         <GooglePlacesAutocomplete

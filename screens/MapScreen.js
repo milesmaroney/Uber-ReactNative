@@ -9,11 +9,14 @@ import { TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import FoodOptionsCard from '../components/FoodOptionsCard';
+import { useDispatch } from 'react-redux';
+import { setDestination } from '../slices/navSlice';
 
 const MapScreen = () => {
   const Stack = createNativeStackNavigator();
   const navigation = useNavigation();
   const theme = useColorScheme();
+  const dispatch = useDispatch();
 
   return (
     <View>
@@ -21,7 +24,10 @@ const MapScreen = () => {
         style={tw`${
           theme === 'dark' ? 'bg-gray-500' : 'bg-gray-100'
         } absolute top-16 left-8 z-10 p-3 rounded-full`}
-        onPress={() => navigation.navigate('HomeScreen')}
+        onPress={() => {
+          dispatch(setDestination(null));
+          navigation.navigate('HomeScreen');
+        }}
       >
         <Icon name='menu' color={theme === 'dark' ? 'white' : 'black'} />
       </TouchableOpacity>

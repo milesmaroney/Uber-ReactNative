@@ -24,7 +24,7 @@ const data = [
   },
   {
     id: '2',
-    title: 'UberX',
+    title: 'Premium',
     multiplier: 1.2,
     time: 1.5,
     image:
@@ -32,7 +32,7 @@ const data = [
   },
   {
     id: '3',
-    title: 'UberLUX',
+    title: 'Diamond',
     multiplier: 2.5,
     time: 1,
     image:

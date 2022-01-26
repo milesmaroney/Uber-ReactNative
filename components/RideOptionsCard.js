@@ -17,21 +17,21 @@ import { selectTravelTimeInformation } from '../slices/navSlice';
 const data = [
   {
     id: '1',
-    title: 'UberX',
+    title: 'Premium',
     multiplier: 1,
     image:
       'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberX.png',
   },
   {
     id: '2',
-    title: 'UberXL',
+    title: 'PremiumXL',
     multiplier: 1.2,
     image:
       'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/UberXL.png',
   },
   {
     id: '3',
-    title: 'UberLUX',
+    title: 'Diamond',
     multiplier: 1.75,
     image:
       'https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_485,h_385/f_auto,q_auto/products/carousel/Lux.png',
