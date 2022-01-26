@@ -41,7 +41,7 @@ const data = [
     id: '4',
     title: 'Parking',
     image: ParkingIcon,
-    screen: 'IdkYetScreen',
+    screen: 'ParkingScreen',
   },
 ];
 

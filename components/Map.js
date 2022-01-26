@@ -52,7 +52,7 @@ const Map = () => {
         latitude: item?.location.lat,
         longitude: item?.location.lng,
       }}
-      title='Stop'
+      title={`Stop ${i + 1}`}
       description={item.description}
       indentifier={`waypoint${i}`}
       image={waypointPin}

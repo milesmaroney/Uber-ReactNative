@@ -16,6 +16,7 @@ import {
   addWaypoint,
   clearWaypoints,
   selectDestination,
+  selectWaypointDescriptions,
 } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import NavFavorites from './NavFavorites';
@@ -25,7 +26,10 @@ const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const theme = useColorScheme();
-  const [showWaypointInput, setShowWaypointInput] = React.useState(false);
+  const waypoints = useSelector(selectWaypointDescriptions);
+  const [showWaypointInput, setShowWaypointInput] = React.useState(
+    !!waypoints.length
+  );
   const destination = useSelector(selectDestination);
 
   return (
@@ -54,7 +58,7 @@ const NavigateCard = () => {
                   backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
                 },
               }}
-              placeholder='Add a Stop'
+              placeholder={waypoints.length > 0 ? waypoints[0] : 'Add a Stop'}
               fetchDetails={true}
               enablePoweredByContainer={false}
               minLength={2}

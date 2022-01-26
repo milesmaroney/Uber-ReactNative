@@ -10,6 +10,8 @@ import React from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { useColorScheme } from 'react-native';
 import FoodScreen from './screens/FoodScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import ParkingScreen from './screens/ParkingScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -48,6 +50,20 @@ export default function App() {
               <Stack.Screen
                 name='FoodScreen'
                 component={FoodScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='ShippingScreen'
+                component={ParkingScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='ParkingScreen'
+                component={ParkingScreen}
                 options={{
                   headerShown: false,
                 }}
