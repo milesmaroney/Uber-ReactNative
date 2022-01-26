@@ -8,7 +8,6 @@ import {
   selectOrigin,
   selectWaypointCoordinates,
   selectWaypointDescriptions,
-  selectWaypoints,
   setTravelTimeInformation,
 } from '../slices/navSlice';
 import { GOOGLE_MAPS_APIKEY } from '@env';
@@ -35,7 +34,13 @@ const Map = () => {
     if (!origin || !destination) return;
     function getTravelTime() {
       fetch(
-        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${
+          origin.description
+        }&destinations=${
+          waypointCoordinates.length > 0
+            ? waypointCoordinates[0].description
+            : ''
+        }|${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -43,7 +48,7 @@ const Map = () => {
         });
     }
     getTravelTime();
-  }, [origin, destination, GOOGLE_MAPS_APIKEY]);
+  }, [origin, destination, waypointCoordinates, GOOGLE_MAPS_APIKEY]);
 
   const waypointMarkers = waypointCoordinates.map((item, i) => (
     <Marker
