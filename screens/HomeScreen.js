@@ -41,6 +41,9 @@ const HomeScreen = () => {
               color: theme === 'dark' ? 'white' : 'black',
               backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
             },
+            row: {
+              backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
+            },
           }}
           onPress={(data, details = null) => {
             dispatch(

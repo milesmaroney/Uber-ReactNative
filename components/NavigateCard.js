@@ -48,8 +48,11 @@ const NavigateCard = () => {
                   color: theme === 'dark' ? 'white' : 'black',
                   backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
                 },
+                row: {
+                  backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
+                },
               }}
-              placeholder='Where To?'
+              placeholder='Add a Stop'
               fetchDetails={true}
               enablePoweredByContainer={false}
               minLength={2}
@@ -75,6 +78,9 @@ const NavigateCard = () => {
               textInput: {
                 fontSize: 18,
                 color: theme === 'dark' ? 'white' : 'black',
+                backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
+              },
+              row: {
                 backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
               },
             }}

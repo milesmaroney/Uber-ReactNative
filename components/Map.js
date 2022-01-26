@@ -15,6 +15,7 @@ import { GOOGLE_MAPS_APIKEY } from '@env';
 import MapViewDirections from 'react-native-maps-directions';
 import destinationPin from '../assets/destination_pin.png';
 import pickupPin from '../assets/pickup_pin.png';
+import waypointPin from '../assets/waypoint_pin.png';
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -54,7 +55,7 @@ const Map = () => {
       title='Stop'
       description={item.description}
       indentifier={`waypoint${i}`}
-      image={destinationPin}
+      image={waypointPin}
     />
   ));
   return (
