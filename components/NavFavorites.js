@@ -51,7 +51,7 @@ const NavFavorites = () => {
               name={showHomeEditor ? 'minus-circle' : 'plus-circle'}
               type='font-awesome'
               color={theme === 'dark' ? 'white' : 'black'}
-              size={50}
+              size={45}
             />
             <View>
               <Text
@@ -145,6 +145,7 @@ const NavFavorites = () => {
               <TouchableOpacity
                 onPress={() => {
                   dispatch(setHome(null));
+                  setShowDelHome(false);
                 }}
                 style={tw`ml-auto`}
               >
@@ -172,7 +173,7 @@ const NavFavorites = () => {
               name={showWorkEditor ? 'minus-circle' : 'plus-circle'}
               type='font-awesome'
               color={theme === 'dark' ? 'white' : 'black'}
-              size={50}
+              size={45}
             />
             <View>
               <Text
@@ -266,6 +267,7 @@ const NavFavorites = () => {
               <TouchableOpacity
                 onPress={() => {
                   dispatch(setWork(null));
+                  setShowDelWork(false);
                 }}
                 style={tw`ml-auto`}
               >

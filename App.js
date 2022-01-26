@@ -12,6 +12,7 @@ import { useColorScheme } from 'react-native';
 import FoodScreen from './screens/FoodScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import ParkingScreen from './screens/ParkingScreen';
+import SuccessScreen from './screens/SuccessScreen';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -64,6 +65,13 @@ export default function App() {
               <Stack.Screen
                 name='ParkingScreen'
                 component={ParkingScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
+                name='SuccessScreen'
+                component={SuccessScreen}
                 options={{
                   headerShown: false,
                 }}

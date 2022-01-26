@@ -118,6 +118,7 @@ const RideOptionsCard = () => {
             !active && theme === 'dark' ? 'bg-gray-700' : 'bg-gray-300'
           }`}
           disabled={!active}
+          onPress={() => navigation.navigate('SuccessScreen')}
         >
           <Text style={tw`text-center text-xl`}>
             {active ? `Select ${active.title}` : 'Pick an Option'}
