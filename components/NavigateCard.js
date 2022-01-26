@@ -11,7 +11,11 @@ import tw from 'tailwind-react-native-classnames';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 import { useDispatch } from 'react-redux';
-import { setDestination } from '../slices/navSlice';
+import {
+  setDestination,
+  addWaypoint,
+  clearWaypoints,
+} from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import NavFavorites from './NavFavorites';
 import { Icon } from 'react-native-elements';
@@ -20,6 +24,7 @@ const NavigateCard = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const theme = useColorScheme();
+  const [showWaypointInput, setShowWaypointInput] = React.useState(false);
 
   return (
     <SafeAreaView style={tw`flex-1 ${theme === 'dark' && 'bg-black'}`}>
@@ -34,6 +39,36 @@ const NavigateCard = () => {
         } flex-shrink px-4 pt-4`}
       >
         <View>
+          {showWaypointInput && (
+            <GooglePlacesAutocomplete
+              styles={{
+                container: { flex: 0 },
+                textInput: {
+                  fontSize: 18,
+                  color: theme === 'dark' ? 'white' : 'black',
+                  backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
+                },
+              }}
+              placeholder='Where To?'
+              fetchDetails={true}
+              enablePoweredByContainer={false}
+              minLength={2}
+              onPress={(data, details = null) => {
+                dispatch(
+                  addWaypoint({
+                    location: details.geometry.location,
+                    description: data.description,
+                  })
+                );
+              }}
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: 'en',
+              }}
+              debounce={400}
+              nearbyPlacesAPI='GooglePlacesSearch'
+            />
+          )}
           <GooglePlacesAutocomplete
             styles={{
               container: { flex: 0 },
@@ -63,6 +98,17 @@ const NavigateCard = () => {
             debounce={400}
             nearbyPlacesAPI='GooglePlacesSearch'
           />
+          <TouchableOpacity
+            style={tw`absolute right-1 top-1 p-2 bg-black rounded`}
+            onPress={() => {
+              dispatch(clearWaypoints({}));
+              setShowWaypointInput((x) => !x);
+            }}
+          >
+            <Text style={tw`text-white font-semibold`}>
+              {showWaypointInput ? 'Remove Stop' : 'Add Stop'}
+            </Text>
+          </TouchableOpacity>
         </View>
         <NavFavorites />
       </View>

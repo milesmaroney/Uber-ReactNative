@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectDestination,
   selectOrigin,
+  selectWaypointCoordinates,
+  selectWaypointDescriptions,
+  selectWaypoints,
   setTravelTimeInformation,
 } from '../slices/navSlice';
 import { GOOGLE_MAPS_APIKEY } from '@env';
@@ -16,6 +19,8 @@ import pickupPin from '../assets/pickup_pin.png';
 const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
+  const waypointDescriptions = useSelector(selectWaypointDescriptions);
+  const waypointCoordinates = useSelector(selectWaypointCoordinates);
   const mapRef = useRef();
   const dispatch = useDispatch();
   const theme = useColorScheme();
@@ -39,6 +44,19 @@ const Map = () => {
     getTravelTime();
   }, [origin, destination, GOOGLE_MAPS_APIKEY]);
 
+  const waypointMarkers = waypointCoordinates.map((item, i) => (
+    <Marker
+      key={i}
+      coordinate={{
+        latitude: item?.location.lat,
+        longitude: item?.location.lng,
+      }}
+      title='Stop'
+      description={item.description}
+      indentifier={`waypoint${i}`}
+      image={destinationPin}
+    />
+  ));
   return (
     <MapView
       ref={mapRef}
@@ -58,6 +76,7 @@ const Map = () => {
           apikey={GOOGLE_MAPS_APIKEY}
           strokeWidth={3}
           strokeColor={theme === 'dark' ? 'white' : 'black'}
+          waypoints={waypointDescriptions}
         />
       )}
       {origin?.location && (
@@ -84,6 +103,19 @@ const Map = () => {
           image={destinationPin}
         />
       )}
+      {/* {waypointCoordinates && (
+        <Marker
+          coordinate={{
+            latitude: waypointCoordinates[0]?.location.lat,
+            longitude: waypointCoordinates[0]?.location.lng,
+          }}
+          title='Stop'
+          description={waypointCoordinates[0]?.description}
+          indentifier='stop'
+          image={destinationPin}
+        />
+      )} */}
+      {waypointCoordinates?.length > 0 && waypointMarkers}
     </MapView>
   );
 };
