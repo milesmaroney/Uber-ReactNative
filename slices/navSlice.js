@@ -6,6 +6,8 @@ const initialState = {
   travelTimeInformation: null,
   waypointDescriptions: [],
   waypointCoordinates: [],
+  home: null,
+  work: null,
 };
 
 export const navSlice = createSlice({
@@ -39,6 +41,12 @@ export const navSlice = createSlice({
       state.waypointDescriptions = [];
       state.waypointCoordinates = [];
     },
+    setHome: (state, action) => {
+      state.home = action.payload;
+    },
+    setWork: (state, action) => {
+      state.work = action.payload;
+    },
   },
 });
 
@@ -49,6 +57,8 @@ export const {
   addWaypoint,
   deleteWaypoint,
   clearWaypoints,
+  setHome,
+  setWork,
 } = navSlice.actions;
 
 export const selectOrigin = (state) => state.nav.origin;
@@ -59,5 +69,7 @@ export const selectWaypointDescriptions = (state) =>
   state.nav.waypointDescriptions;
 export const selectWaypointCoordinates = (state) =>
   state.nav.waypointCoordinates;
+export const selectHome = (state) => state.nav.home;
+export const selectWork = (state) => state.nav.work;
 
 export default navSlice.reducer;

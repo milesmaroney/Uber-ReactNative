@@ -10,11 +10,12 @@ import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { GOOGLE_MAPS_APIKEY } from '@env';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setDestination,
   addWaypoint,
   clearWaypoints,
+  selectDestination,
 } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import NavFavorites from './NavFavorites';
@@ -25,6 +26,7 @@ const NavigateCard = () => {
   const navigation = useNavigation();
   const theme = useColorScheme();
   const [showWaypointInput, setShowWaypointInput] = React.useState(false);
+  const destination = useSelector(selectDestination);
 
   return (
     <SafeAreaView style={tw`flex-1 ${theme === 'dark' && 'bg-black'}`}>
@@ -84,7 +86,7 @@ const NavigateCard = () => {
                 backgroundColor: theme === 'dark' ? '#374151' : '#d1d5db',
               },
             }}
-            placeholder='Where To?'
+            placeholder={destination ? destination.description : 'Where to?'}
             fetchDetails={true}
             enablePoweredByContainer={false}
             minLength={2}

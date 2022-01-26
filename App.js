@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import HomeScreen from './screens/HomeScreen';
 import MapScreen from './screens/MapScreen';
@@ -15,9 +14,16 @@ import FoodScreen from './screens/FoodScreen';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
+  const theme = useColorScheme();
+
+  React.useEffect(() => {});
+
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <StatusBar
+          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        />
         <SafeAreaProvider>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
