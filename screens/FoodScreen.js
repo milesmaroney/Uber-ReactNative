@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Image,
+  useColorScheme,
 } from 'react-native';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ const FoodScreen = () => {
   const [nearby, setNearby] = React.useState([]);
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const theme = useColorScheme();
 
   const foodLinks = [
     'https://d1ralsognjng37.cloudfront.net/b612983b-81ed-48ba-b44d-770c6634ba05.jpeg',
@@ -32,10 +34,11 @@ const FoodScreen = () => {
   React.useEffect(() => {
     function fetchNearbyFood() {
       fetch(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${origin.location.lat},${origin.location.lng}&radius=5000&type=restaurant&keyword=cruise&key=${GOOGLE_MAPS_APIKEY}`
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${origin.location.lat},${origin.location.lng}&radius=3000&type=restaurant&key=${GOOGLE_MAPS_APIKEY}`
       )
         .then((res) => res.json())
         .then((data) => {
+          // console.log(data.results);
           setNearby(data.results);
         });
     }
@@ -43,13 +46,27 @@ const FoodScreen = () => {
     fetchNearbyFood();
   }, [origin]);
   return (
-    <SafeAreaView style={tw``}>
-      <View style={tw`p-4`}>
-        <Text>Deliver now</Text>
-        <View style={tw`flex flex-row`}>
-          <Text style={tw`font-semibold`}>
-            {origin.description.split(',')[0]}
-          </Text>
+    <SafeAreaView style={tw`${theme === 'dark' && 'bg-black'}`}>
+      <View style={tw`p-4 flex flex-row items-center`}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('HomeScreen');
+          }}
+          style={tw`p-3 rounded-full`}
+        >
+          <Icon
+            name='chevron-left'
+            type='fontawesome'
+            color={theme === 'dark' ? 'white' : 'black'}
+          />
+        </TouchableOpacity>
+        <View>
+          <Text style={tw`${theme === 'dark' && 'text-white'}`}>Food near</Text>
+          <View style={tw`flex flex-row`}>
+            <Text style={tw`font-semibold ${theme === 'dark' && 'text-white'}`}>
+              {origin.description.split(',')[0]}
+            </Text>
+          </View>
         </View>
       </View>
       <FlatList
@@ -78,7 +95,13 @@ const FoodScreen = () => {
               />
             </View>
             <View style={tw`flex flex-row items-center pt-1`}>
-              <Text style={tw`text-lg font-bold`}>{item.name}</Text>
+              <Text
+                style={tw`text-lg font-bold ${
+                  theme === 'dark' && 'text-white'
+                }`}
+              >
+                {item.name}
+              </Text>
               <View
                 style={tw`ml-auto h-6 w-6 flex justify-center items-center rounded-full bg-gray-300`}
               >
