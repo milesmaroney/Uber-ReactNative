@@ -1,5 +1,6 @@
 import {
   Image,
+  KeyboardAvoidingView,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -27,7 +28,7 @@ const HomeScreen = () => {
   const lightTheme = tw`h-full bg-white text-black`;
 
   return (
-    <SafeAreaView style={theme === 'dark' ? darkTheme : lightTheme}>
+    <KeyboardAvoidingView style={theme === 'dark' ? darkTheme : lightTheme}>
       <View style={tw`p-5`}>
         <Image
           style={{ width: 100, height: 100, resizeMode: 'contain' }}
@@ -71,7 +72,7 @@ const HomeScreen = () => {
         <NavOptions />
         <NavFavorites />
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 
