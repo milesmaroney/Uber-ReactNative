@@ -34,13 +34,7 @@ const Map = () => {
     if (!origin || !destination) return;
     function getTravelTime() {
       fetch(
-        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${
-          origin.description
-        }&destinations=${
-          waypointCoordinates.length > 0
-            ? waypointCoordinates[0].description
-            : ''
-        }|${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
       )
         .then((res) => res.json())
         .then((data) => {
