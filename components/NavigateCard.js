@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   useColorScheme,
+  ScrollView,
 } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';
@@ -123,46 +124,46 @@ const NavigateCard = () => {
           </TouchableOpacity>
         </View>
         <NavFavorites />
-      </View>
-      <View
-        style={tw`flex-row justify-evenly py-2 mt-auto border-t ${
-          theme === 'dark' ? 'border-gray-600' : 'border-gray-200'
-        }`}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate('RideOptionsCard')}
-          style={tw`flex flex-row justify-between ${
-            theme === 'dark' ? 'bg-white' : 'bg-black'
-          } w-24 px-4 py-3 rounded-full`}
+        <View
+          style={tw`flex-row justify-evenly py-2 mt-auto border-t ${
+            theme === 'dark' ? 'border-gray-600' : 'border-gray-200'
+          }`}
         >
-          <Icon
-            name='car'
-            type='font-awesome'
-            color={theme === 'dark' ? 'black' : 'white'}
-            size={16}
-          />
-          <Text style={tw`${theme === 'light' && 'text-white'} text-center`}>
-            Rides
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('FoodOptionsCard')}
-          style={tw`flex flex-row justify-between ${
-            theme === 'dark' ? 'bg-white' : 'bg-black'
-          } w-24 px-4 py-3 rounded-full`}
-        >
-          <Icon
-            name='fast-food-outline'
-            type='ionicon'
-            color={theme === 'dark' ? 'black' : 'white'}
-            size={16}
-          />
-          <Text
-            style={tw`${theme === 'light' && 'text-white'} text-center pl-3`}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('RideOptionsCard')}
+            style={tw`flex flex-row justify-between ${
+              theme === 'dark' ? 'bg-white' : 'bg-black'
+            } w-24 px-4 py-3 rounded-full`}
           >
-            Eats
-          </Text>
-        </TouchableOpacity>
+            <Icon
+              name='car'
+              type='font-awesome'
+              color={theme === 'dark' ? 'black' : 'white'}
+              size={16}
+            />
+            <Text style={tw`${theme === 'light' && 'text-white'} text-center`}>
+              Rides
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('FoodOptionsCard')}
+            style={tw`flex flex-row justify-between ${
+              theme === 'dark' ? 'bg-white' : 'bg-black'
+            } w-24 px-4 py-3 rounded-full`}
+          >
+            <Icon
+              name='fast-food-outline'
+              type='ionicon'
+              color={theme === 'dark' ? 'black' : 'white'}
+              size={16}
+            />
+            <Text
+              style={tw`${theme === 'light' && 'text-white'} text-center pl-3`}
+            >
+              Eats
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );

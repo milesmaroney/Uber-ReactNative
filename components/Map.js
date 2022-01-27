@@ -27,7 +27,9 @@ const Map = () => {
 
   useEffect(() => {
     if (!origin || !destination) return;
-    mapRef.current.fitToElements();
+    mapRef.current.fitToElements({
+      edgePadding: { top: 100, right: 100, bottom: 100, left: 100 },
+    });
   }, [origin, destination, waypointCoordinates]);
 
   useEffect(() => {
